@@ -1,5 +1,5 @@
-﻿using ExamenAppDotNet.Models;
-using ExamenAppDotNet.ViewModels;
+﻿using Tenis.Models;
+using Tenis.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -13,7 +13,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 
-namespace ExamenAppDotNet.Services
+namespace Tenis.Services
 {
     public interface IUsersService
     {
@@ -27,10 +27,10 @@ namespace ExamenAppDotNet.Services
 
     public class UsersService : IUsersService
     {
-        private ExamDbContext context;
+        private Models.TenisDbContext context;
         private readonly AppSettings appSettings;
 
-        public UsersService(ExamDbContext context, IOptions<AppSettings> appSettings)
+        public UsersService(Models.TenisDbContext context, IOptions<AppSettings> appSettings)
         {
             this.context = context;
             this.appSettings = appSettings.Value;

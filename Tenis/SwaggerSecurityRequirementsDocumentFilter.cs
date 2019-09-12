@@ -2,7 +2,7 @@
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 
-namespace ExamenAppDotNet
+namespace Tenis
 {
     public class SwaggerSecurityRequirementsDocumentFilter : IDocumentFilter
     {

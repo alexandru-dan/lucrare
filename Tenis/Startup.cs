@@ -2,8 +2,8 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
-using ExamenAppDotNet.Models;
-using ExamenAppDotNet.Services;
+using Tenis.Models;
+using Tenis.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,7 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 
 
-namespace ExamenAppDotNet
+namespace Tenis
 {
     public class Startup
     {
@@ -31,7 +31,7 @@ namespace ExamenAppDotNet
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<ExamDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<Models.TenisDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
             {

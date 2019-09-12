@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace ExamenAppDotNet.ViewModels
+namespace Tenis.ViewModels
 {
     public class UserGetModel
     {

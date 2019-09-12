@@ -1,11 +1,11 @@
-﻿using ExamenAppDotNet.Models;
-using ExamenAppDotNet.Services;
+﻿using Tenis.Models;
+using Tenis.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace ExamenAppDotNet.ViewModels
+namespace Tenis.ViewModels
 {
     public class RegisterPostModel
     {

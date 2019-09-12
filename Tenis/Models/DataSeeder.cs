@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ExamenAppDotNet.Models
+namespace Tenis.Models
 {
     public class DataSeeder
     {
-        public static void Initialize(ExamDbContext context)
+        public static void Initialize(TenisDbContext context)
         {
             context.Database.EnsureCreated();
 

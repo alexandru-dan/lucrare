@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ExamenAppDotNet.ViewModels
+namespace Tenis.ViewModels
 {
     public class LoginPostModel
     {

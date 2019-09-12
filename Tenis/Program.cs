@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using ExamenAppDotNet.Models;
+using Tenis.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace ExamenAppDotNet
+namespace Tenis
 {
     public class Program
     {
@@ -23,7 +23,7 @@ namespace ExamenAppDotNet
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<ExamDbContext>();
+                    var context = services.GetRequiredService<TenisDbContext>();
                     DataSeeder.Initialize(context);
                 }
                 catch (Exception ex)

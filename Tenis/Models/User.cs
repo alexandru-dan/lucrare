@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ExamenAppDotNet.Models
+namespace Tenis.Models
 {
     public enum UserRole
     {

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ExamenAppDotNet.Models
+namespace Tenis.Models
 {
     // DbContext = Unit of Work
-    public class ExamDbContext : DbContext
+    public class TenisDbContext : DbContext
     {
-        public ExamDbContext(DbContextOptions<ExamDbContext> options) : base(options)
+        public TenisDbContext(DbContextOptions<TenisDbContext> options) : base(options)
         {
 
         }
@@ -19,5 +19,9 @@ namespace ExamenAppDotNet.Models
 
         // DbSet = Repository, O tabela din baza de 
         public DbSet<User> Users { get; set; }
+        public DbSet<Fields> Fields { get; set; }
+        public DbSet<Games> Games { get; set; }
+        public DbSet<UserDetails> UserDetails { get; set; }
+        public DbSet<UserToDetails> UserToDetails { get; set; }
     }
 }

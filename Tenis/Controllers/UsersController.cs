@@ -1,11 +1,11 @@
-﻿using ExamenAppDotNet.Models;
-using ExamenAppDotNet.Services;
-using ExamenAppDotNet.ViewModels;
+﻿using Tenis.Models;
+using Tenis.Services;
+using Tenis.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ExamenAppDotNet.Controllers
+namespace Tenis.Controllers
 {
     // https://jasonwatmore.com/post/2018/08/14/aspnet-core-21-jwt-authentication-tutorial-with-example-api
 
