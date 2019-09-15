@@ -11,20 +11,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-
+using Tenis.Services.Interface;
 
 namespace Tenis.Services
 {
-    public interface IUsersService
-    {
-        UserGetModel Authenticate(string username, string password);
-        UserGetModel Register(RegisterPostModel registerInfo);
-        User GetCurrentUser(HttpContext httpContext);
-        IEnumerable<UserGetModel> GetAll();
-        User DeleteUser(int id);
-        User UpsertUser(int id, User modifiedUser);
-    }
-
     public class UsersService : IUsersService
     {
         private Models.TenisDbContext context;
@@ -40,13 +30,9 @@ namespace Tenis.Services
         {
             var user = context.Users
                 .SingleOrDefault(x => x.Username == username &&
-                                 x.Password == ComputeSha256Hash(password));
-
-            // return null if user not found
+                                 x.Password == ComputeSha256Hash(password));           
             if (user == null)
                 return null;
-
-            // authentication successful so generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor

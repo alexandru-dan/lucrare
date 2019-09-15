@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tenis.Models;
 
 namespace Tenis.Migrations
 {
     [DbContext(typeof(TenisDbContext))]
-    partial class TenisDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190914185555_relation_db")]
+    partial class relation_db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,11 +29,7 @@ namespace Tenis.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<string>("FieldNumber");
-
                     b.Property<string>("Name");
-
-                    b.Property<string>("NameId");
 
                     b.HasKey("Id");
 
@@ -46,23 +44,23 @@ namespace Tenis.Migrations
 
                     b.Property<DateTime>("DateTime");
 
-                    b.Property<int?>("FieldNameAndFieldNumberId");
-
-                    b.Property<int?>("NameAndSurnameFirstPlayerId");
-
-                    b.Property<int?>("NameAndSurnameSecondPlayerId");
+                    b.Property<int?>("FieldId");
 
                     b.Property<string>("Score");
 
                     b.Property<string>("Status");
 
+                    b.Property<int?>("User1IdId");
+
+                    b.Property<int?>("User2IdId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("FieldNameAndFieldNumberId");
+                    b.HasIndex("FieldId");
 
-                    b.HasIndex("NameAndSurnameFirstPlayerId");
+                    b.HasIndex("User1IdId");
 
-                    b.HasIndex("NameAndSurnameSecondPlayerId");
+                    b.HasIndex("User2IdId");
 
                     b.ToTable("Games");
                 });
@@ -104,35 +102,26 @@ namespace Tenis.Migrations
 
                     b.Property<int>("Level");
 
-                    b.Property<int?>("UserIdId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserIdId");
 
                     b.ToTable("UserDetails");
                 });
 
             modelBuilder.Entity("Tenis.Models.Games", b =>
                 {
-                    b.HasOne("Tenis.Models.Fields", "FieldNameAndFieldNumber")
+                    b.HasOne("Tenis.Models.Fields", "Field")
                         .WithMany()
-                        .HasForeignKey("FieldNameAndFieldNumberId");
+                        .HasForeignKey("FieldId");
 
-                    b.HasOne("Tenis.Models.User", "NameAndSurnameFirstPlayer")
+                    b.HasOne("Tenis.Models.User", "User1Id")
                         .WithMany()
-                        .HasForeignKey("NameAndSurnameFirstPlayerId");
+                        .HasForeignKey("User1IdId");
 
-                    b.HasOne("Tenis.Models.User", "NameAndSurnameSecondPlayer")
+                    b.HasOne("Tenis.Models.User", "User2Id")
                         .WithMany()
-                        .HasForeignKey("NameAndSurnameSecondPlayerId");
-                });
-
-            modelBuilder.Entity("Tenis.Models.UserDetails", b =>
-                {
-                    b.HasOne("Tenis.Models.User", "UserId")
-                        .WithMany()
-                        .HasForeignKey("UserIdId");
+                        .HasForeignKey("User2IdId");
                 });
 #pragma warning restore 612, 618
         }

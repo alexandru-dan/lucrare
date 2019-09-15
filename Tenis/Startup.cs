@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
-
+using Tenis.Services.Interface;
 
 namespace Tenis
 {
@@ -94,6 +94,9 @@ namespace Tenis
 
             // Dependency Injection
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IGamesService, GamesService>();
+            services.AddScoped<IFieldsService, FieldsService>();
+
 
         }
 

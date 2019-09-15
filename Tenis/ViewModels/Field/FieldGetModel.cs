@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tenis.Models
+namespace Tenis.ViewModels
 {
-    public class Fields
+    public class FieldGetModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public string NameId { get; set; }
         public string FieldNumber { get; set; }
         public string Address { get; set; }
     }

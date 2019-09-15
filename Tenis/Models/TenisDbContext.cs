@@ -22,6 +22,5 @@ namespace Tenis.Models
         public DbSet<Fields> Fields { get; set; }
         public DbSet<Games> Games { get; set; }
         public DbSet<UserDetails> UserDetails { get; set; }
-        public DbSet<UserToDetails> UserToDetails { get; set; }
     }
 }

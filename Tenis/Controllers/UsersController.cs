@@ -4,13 +4,11 @@ using Tenis.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tenis.Services.Interface;
 
 namespace Tenis.Controllers
 {
-    // https://jasonwatmore.com/post/2018/08/14/aspnet-core-21-jwt-authentication-tutorial-with-example-api
-
-    //[Authorize]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -20,7 +18,7 @@ namespace Tenis.Controllers
         {
             this.userService = userService;
         }
-        // returns the logged in user
+
         private User GetConectedUser()
         {
             return userService.GetCurrentUser(HttpContext);
@@ -41,7 +39,6 @@ namespace Tenis.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        //[HttpPost]
         public IActionResult Register([FromBody]RegisterPostModel registerModel)
         {
             var user = userService.Register(registerModel);
@@ -53,14 +50,19 @@ namespace Tenis.Controllers
         }
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Regular, UserManager, Admin")]
         [HttpGet]
         public IActionResult GetAll()
         {
+            if (GetConectedUser().UserRole.Equals(null))
+            {
+                return BadRequest(new { ErrorMessage = "You need to be registered to see players!" });
+            }
             var users = userService.GetAll();
             return Ok(users);
         }
 
+        [Authorize(Roles = "UserManager, Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("id")]
@@ -74,7 +76,8 @@ namespace Tenis.Controllers
             
             return Ok(user);
         }
-        
+
+        [Authorize(Roles = "Regular, UserManager, Admin")]
         [HttpPut("id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
